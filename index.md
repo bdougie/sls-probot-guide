@@ -148,6 +148,8 @@ Now we can install the app on any repository, and any time a new issue is opened
 
 You'll need to create a test repository and install your app by clicking the "Install" button on the settings page of your app, e.g. `https://github.com/apps/your-app`
 
+![install app](/assets/images/install.png)
+
 ## Running the app locally
 
 Now you're ready to run the app on your local machine. Run `npm run dev` to start the server:
@@ -229,4 +231,7 @@ page.
 ## Congrats
 Your project can now be called on-demand each time event triggers your
 application. Check out the [official Probot documentation](https://probot.github.io/docs/) for more info
-on how you can integrate into your development workflow.
+on how you can integrate GitHub Apps into your development workflow.
+
+![you did it
+gif](https://media.giphy.com/media/6yKquSnGwI5Ak/giphy.gif)
