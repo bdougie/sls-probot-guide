@@ -1,5 +1,5 @@
-title: Architect theme
-description: Architect is a theme for GitHub Pages.
-show_downloads: true
+title: Serverless-Probot
+description: A guide for deploying to deploying your GitHub App that can automate and improve your workflow to AWS Lambda.
+show_downloads: false
 google_analytics:
 theme: jekyll-theme-architect
