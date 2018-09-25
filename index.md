@@ -9,11 +9,11 @@ This guide is designed to help you build a GitHub App and run it on a server. Th
 
 1. [Create the GitHub App](#create-the-github-app)
   1. [Generating a new app](#generating-a-new-app)
+  1. [Configuring a GitHub App](#configuring-a-github-app)
   1. [Update App Permissions](#update-app-permissions)
   1. [Add Labels to new issues](#add-labels-to-new-issues)
-1. [Configuring a GitHub App](#configuring-a-github-app)
-  1. [Installing the App on a repo](#installing-the-app-on-a-repo)
-  1. [Running the App locally](#running-the-app-locally)
+1. [Installing the App on a repo](#installing-the-app-on-a-repo)
+1. [Running the App locally](#running-the-app-locally)
 1. [Deploy to Lambda](#deploy-the-lambda)
 
 
@@ -23,10 +23,10 @@ Once you've worked through the steps, you'll be ready to develop other kinds of 
 
 You may find it helpful to have a basic understanding of the following:
 
-* [GitHub Apps](/apps/about-apps)
-* [Webhooks](/webhooks)
+* [GitHub Apps](https://developer.github.com/apps/about-apps)
+* [Webhooks](https://developer.github.com/webhooks)
 * The JavaScript programming language (there's no official link)
-* [REST APIs](/v3)
+* [REST APIs](https://developer.github.com/v3)
 
 But you can follow along at any experience level. We'll link out to information you need along the way!
 
@@ -73,9 +73,22 @@ Done! Enjoy building your Probot app!
 
 The most important files note here are `index.js`, which is where the code for your app will go, and `package.json`, which makes this a standard [npm module](https://docs.npmjs.com/files/package.json).
 
+### Configuring a GitHub App
+
+To run your app in development, you will need to configure a GitHub App to deliver webhooks to your local machine.
+
+1. On your local machine, copy `.env.example` to `.env`.
+1. Go to [smee.io](https://smee.io) and click **Start a new channel**. Set `WEBHOOK_PROXY_URL` in `.env` to the URL that you are redirected to.
+1. [Create a new GitHub App](https://github.com/settings/apps/new) with:
+    - **Webhook URL**: Use your `WEBHOOK_PROXY_URL` from the previous step.
+    - **Webhook Secret:** `development` (Note: For optimal security, Probot apps **require** this secret be set, even though it's optional on GitHub.).
+    - **Permissions & events** is located lower down the page and will depend on what data you want your app to have access to. Note: if, for example, you only enable issue events, you will not be able to listen on pull request webhooks with your app. However, for development we recommend enabling everything. Click save and move to the next step for now.
+1. Download the private key and move it to your project's directory. As long as it's in the root of your project, Probot will find it automatically regardless of the filename.
+1. Edit `.env` and set `APP_ID` to the ID of the app you just created. The App ID can be found in your app settings page here <img width="1048" alt="screen shot 2017-08-20 at 8 31 31 am" src="https://user-images.githubusercontent.com/5713670/42248717-f6bf4f10-7edb-11e8-8dd5-387181c771bc.png">
+
 ### Update App permissions
 
-When you [first registered your app](#register-a-new-app-with-github), you accepted the default permissions, which amount to "no access" for most operations.
+When you first [configured your new GitHub App](#configuring-a-github-app), you accepted the default permissions, which amount to "no access" for most operations.
 
 But your app is going to need permission to read issues and write labels. To update its permissions, return to the [app settings page](https://github.com/settings/apps), choose your app, and click **Permissions & Webhooks** in the sidebar.
 
@@ -106,7 +119,7 @@ First, create the label. For the purposes of this guide, create the label manual
 
 {{/note}}
 
-Now that the label exists, you can program your app to use the REST API to [add the label to any newly opened issue](/v3/issues/labels/#add-labels-to-an-issue).
+Now that the label exists, you can program your app to use the REST API to [add the label to any newly opened issue](https://developer.github.com/v3/issues/labels/#add-labels-to-an-issue).
 
 We already know that Probot handles the authentication side of things, but what Probot also does is pass in an authenticated Octokit instance in the form of `context.github` that allows you to utilize GitHub's REST API.
 
@@ -129,26 +142,13 @@ module.exports = app => {
 
 Now we can install the app on any repository, and any time a new issue is opened, it will add the label 'needs-response' to all newly opened issues, like so:
 
-![Issue getting labeled](images/label-added.png)
+![Issue getting labeled](https://raw.githubusercontent.com/hiimbex/building-your-first-github-app/master/images/label-added.png)
 
-## Configuring a GitHub App
-
-To run your app in development, you will need to configure a GitHub App to deliver webhooks to your local machine.
-
-1. On your local machine, copy `.env.example` to `.env`.
-1. Go to [smee.io](https://smee.io) and click **Start a new channel**. Set `WEBHOOK_PROXY_URL` in `.env` to the URL that you are redirected to.
-1. [Create a new GitHub App](https://github.com/settings/apps/new) with:
-    - **Webhook URL**: Use your `WEBHOOK_PROXY_URL` from the previous step.
-    - **Webhook Secret:** `development` (Note: For optimal security, Probot apps **require** this secret be set, even though it's optional on GitHub.).
-    - **Permissions & events** is located lower down the page and will depend on what data you want your app to have access to. Note: if, for example, you only enable issue events, you will not be able to listen on pull request webhooks with your app. However, for development we recommend enabling everything.
-1. Download the private key and move it to your project's directory. As long as it's in the root of your project, Probot will find it automatically regardless of the filename.
-1. Edit `.env` and set `APP_ID` to the ID of the app you just created. The App ID can be found in your app settings page here <img width="1048" alt="screen shot 2017-08-20 at 8 31 31 am" src="https://user-images.githubusercontent.com/5713670/42248717-f6bf4f10-7edb-11e8-8dd5-387181c771bc.png">
-
-### Installing the app on a repo
+## Installing the app on a repo
 
 You'll need to create a test repository and install your app by clicking the "Install" button on the settings page of your app, e.g. `https://github.com/apps/your-app`
 
-### Running the app locally
+## Running the app locally
 
 Now you're ready to run the app on your local machine. Run `npm run dev` to start the server:
 
