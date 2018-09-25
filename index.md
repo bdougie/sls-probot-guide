@@ -8,9 +8,13 @@ This guide is designed to help you build a GitHub App and run it on a server. Th
 **Contents:**
 
 1. [Create the GitHub App](#create-the-github-app)
-1. [Deploy the app to a FaaS provider](#deploy-the-app)
-    1. [AWS Lambda](#aws-lambda)
-    1. [Google Cloud Function](#google-cloud-function)
+  1. [Generating a new app](#generating-a-new-app)
+  1. [Update App Permissions](#update-app-permissions)
+  1. [Add Labels to new issues](#add-labels-to-new-issues)
+1. [Configuring a GitHub App](#configuring-a-github-app)
+  1. [Installing the App on a repo](#installing-the-app-on-a-repo)
+  1. [Running the App locally](#running-the-app-locally)
+1. [Deploy to Lambda](#deploy-the-lambda)
 
 
 Once you've worked through the steps, you'll be ready to develop other kinds of integrations using the full suite of GitHub APIs. 
@@ -30,7 +34,7 @@ But you can follow along at any experience level. We'll link out to information 
 
 To develop a Probot app, you will first need a recent version of [Node.js](https://nodejs.org/) installed. Open a terminal and run `node -v` to verify that it is installed and is at least 8.3.0 or later. Otherwise, [install the latest version](https://nodejs.org/).
 
-## Generating a new app
+### Generating a new app
 
 [create-probot-app](https://github.com/probot/create-probot-app) is the best way to start building a new app. It will generate a new app with everything you need to get started and run your app in production.
 
@@ -69,7 +73,7 @@ Done! Enjoy building your Probot app!
 
 The most important files note here are `index.js`, which is where the code for your app will go, and `package.json`, which makes this a standard [npm module](https://docs.npmjs.com/files/package.json).
 
-## Update App permissions
+### Update App permissions
 
 When you [first registered your app](#register-a-new-app-with-github), you accepted the default permissions, which amount to "no access" for most operations.
 
@@ -90,7 +94,7 @@ Great! Your app has permission to do the tasks you want it to do. Now you can ad
 
 Make sure you install the app on the repository you want to use it on!
 
-## Add labels to new issues
+### Add labels to new issues
 
 OK, your app can tell when issues are opened. Now you want the app to add the label `needs-response` to any newly opened issue.
 
@@ -140,11 +144,11 @@ To run your app in development, you will need to configure a GitHub App to deliv
 1. Download the private key and move it to your project's directory. As long as it's in the root of your project, Probot will find it automatically regardless of the filename.
 1. Edit `.env` and set `APP_ID` to the ID of the app you just created. The App ID can be found in your app settings page here <img width="1048" alt="screen shot 2017-08-20 at 8 31 31 am" src="https://user-images.githubusercontent.com/5713670/42248717-f6bf4f10-7edb-11e8-8dd5-387181c771bc.png">
 
-## Installing the app on a repo
+### Installing the app on a repo
 
 You'll need to create a test repository and install your app by clicking the "Install" button on the settings page of your app, e.g. `https://github.com/apps/your-app`
 
-## Running the app locally
+### Running the app locally
 
 Now you're ready to run the app on your local machine. Run `npm run dev` to start the server:
 
@@ -224,4 +228,5 @@ page.
 
 ## Congrats
 Your project can now be called on-demand each time event triggers your
-application.
+application. Check out the [official Probot documentation](https://probot.github.io/docs/) for more info
+on how you can integrate into your development workflow.
