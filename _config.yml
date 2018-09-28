@@ -1,5 +1,5 @@
-title: Serverless-Probot
-description: A guide for deploying to deploying your GitHub App that can automate and improve your workflow to AWS Lambda.
+title: Building GitHub Apps
+description: A guide for building and deploying a GitHub App that can automate your workflow.
 show_downloads: false
 google_analytics:
 theme: jekyll-theme-architect

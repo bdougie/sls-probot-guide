@@ -1,9 +1,17 @@
 ---
 layout: default
 ---
+
+
 ## Introduction
 
 This guide is designed to help you build a GitHub App and run it on a server. The app will be simple: it will add a label to any new issue that's opened in a repository the app is installed on.
+
+_This is a video of what is written below_
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/7JZLipM8bT0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+<br>
 
 **Contents:**
 
