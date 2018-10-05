@@ -5,7 +5,7 @@ layout: default
 
 ## Introduction
 
-This guide is designed to help you build a GitHub App and run it on a server. The app will be simple: it will add a label to any new issue that's opened in a repository the app is installed on.
+This guide is designed to help you build a GitHub App using [Probot](https://probot.github.io/), a framework for building automated workflows. The app will be simple: it will add a label to any new issue that's opened in a repository the app is installed on.
 
 _This is a video of what is written below_
 
