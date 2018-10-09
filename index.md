@@ -3,7 +3,7 @@ layout: default
 ---
 
 
-## Introduction
+## THE Introduction
 
 This guide is designed to help you build a GitHub App using [Probot](https://probot.github.io/), a framework for building automated workflows. The app will be simple: it will add a label to any new issue that's opened in a repository the app is installed on.
 
