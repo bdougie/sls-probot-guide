@@ -123,7 +123,7 @@ First, create the label. For the purposes of this guide, create the label manual
 
 {{#note}}
 
-**Note**: Wouldn't it be great if your app could create the label programmatically? [It can](/v3/issues/labels/#create-a-label)! Try adding the code to do that on your own after you finish the steps in this guide.
+**Note**: Wouldn't it be great if your app could create the label programmatically? [It can](https://developer.github.com/v3/issues/labels/#create-a-label)! Try adding the code to do that on your own after you finish the steps in this guide.
 
 {{/note}}
 
